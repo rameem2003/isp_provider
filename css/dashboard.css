@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(29, 40, 204);
+    height: 100vh;
+}
+
+#wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    height: 705px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#wrapper .left{
+    width: 30%;
+    height: 100%;
+    border-right: 2px solid rgb(29, 40, 204);
+}
+
+#wrapper .left .head{
+    margin-bottom: 30px;
+}
+
+#wrapper .left .head h1{
+    font-size: 50px;
+}
+
+#wrapper .left .head button{
+    margin: 20px 0;
+    padding: 10px;
+    width: 40%;
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+#wrapper .left .catagory h3{
+    font-size: 25px;
+    padding: 10px;
+    background-color: rgb(29, 40, 204);
+    border-radius: 0 50px 50px 0;
+    color: white;
+    margin-bottom: 20px;
+}
+
+#wrapper .left .catagory .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#wrapper .left .catagory .options button{
+    width: calc(100% / 2 - 10px);
+    cursor: pointer;
+    height: 50px;
+    font-size: 25px;
+    background-color: rgb(29, 40, 204);
+    color: white;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+}
+
+#wrapper .right{
+    width: 70%;
+    display: block;
+    height: 100%;
+    margin-left: 20px;
+    overflow: scroll;
+}
