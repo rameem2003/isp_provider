@@ -1,3 +1,27 @@
+<?php
+
+    include './connection/connection.php';
+    session_start();
+
+    if(isset($_POST['login'])){
+        $admin_user = $_POST['admin_user'];
+        $admin_pass = $_POST['admin_pass'];
+
+        $login_query = "SELECT * FROM `admin` WHERE admin_user = '$admin_user' AND admin_pass = '$admin_pass'";
+
+        $run = mysqli_query($conn, $login_query);
+
+        if(mysqli_num_rows($run) > 0){
+            $row = mysqli_fetch_assoc($run);
+            $_SESSION['admin_id'] = $row['id'];
+            header("location:dashboard.php");
+        }else{
+            echo "<script> alert('Something went wrong Admin!'); </script>";
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

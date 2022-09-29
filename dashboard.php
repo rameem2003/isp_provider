@@ -1,3 +1,24 @@
+<?php
+
+    include './connection/connection.php';
+    session_start();
+
+    // load admin name
+    $admin_id = $_SESSION['admin_id'];
+
+    $load_admin_name = "SELECT * FROM `admin` WHERE id = '$admin_id'";
+
+    $run_admin = mysqli_query($conn, $load_admin_name);
+
+    if(mysqli_num_rows($run_admin) > 0){
+        $admin_row = mysqli_fetch_assoc($run_admin);
+    }
+
+
+    // admin registration
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +36,7 @@
         <div class="left">
             <div class="head">
                 <h2>Welcome</h2>
-                <h1>Admin</h1>
+                <h1><?php echo $admin_row['admin_user'] ?></h1>
 
                 <button id="add_admin">Add Admin</button>
             </div>
@@ -40,6 +61,10 @@
                 </div>
 
                 <div class="customers">
+                    <div class="search_box">
+                        <input type="text" name="search_user" id="" placeholder="Search">
+                        <button id="searchBtn" name="searchBtn">Search</button>
+                    </div>
                     <table style="width: 100%; margin: 20px 0; border-collapse: collapse; border: 1px solid black;">
                         <thead>
                             <tr>
@@ -67,7 +92,7 @@
                                 <td>################</td>
                                 <td>500</td>
                                 <td>11/11/2022</td>
-                                <td><i class="fa-solid fa-eye"></i></td>
+                                <td><i class="fa-solid fa-trash"></i></td>
                                 <td><i class="fa-solid fa-pen-to-square"></i></td>
                             </tr>
                         </tbody>
@@ -80,7 +105,7 @@
 
     <!-- admin registration -->
     <section id="admin_regi">
-        <form id="reg_form" action="" method="post">
+        <form id="reg_form" action="" method="post" enctype="multipart/form-data">
             <h1>Create a new admin</h1>
             <button id="closeBtn"><i class="fa-solid fa-circle-xmark"></i></button>
             <input type="text" name="new_admin_user" id="" placeholder="Create admin user name">
