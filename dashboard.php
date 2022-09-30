@@ -16,6 +16,18 @@
 
 
     // admin registration
+    if(isset($_POST['admin_reg'])){
+        $new_admin_user = $_POST['new_admin_user'];
+        $new_admin_pass = $_POST['new_admin_pass'];
+
+        $add_admin_query = "INSERT INTO `admin`(admin_user, admin_pass) VALUES ('$new_admin_user','$new_admin_pass')";
+
+        if(mysqli_query($conn, $add_admin_query)){
+            echo '<script> alert("New Admin Added Successfully"); </script>';
+        }else{
+            echo '<script> alert("Somthing Wrong Admin !!!"); </script>';
+        }
+    }
 
 ?>
 
@@ -56,7 +68,6 @@
                 <div class="title">
                     <h1>Anika Cable Network</h1>
                     <h2>Internet Details</h2>
-                    <h2>Total customer: 100</h2>
                     <button id="add_internet_user">Add User</button>
                 </div>
 
@@ -153,14 +164,6 @@
 
         const reg_form = document.getElementById("reg_form");
         const userForm= document.getElementById("userForm");
-
-        reg_form.addEventListener("click", e => {
-            e.preventDefault();
-        })
-
-        userForm.addEventListener("click", e => {
-            e.preventDefault();
-        })
 
         addAdminBtn.addEventListener("click", () => {
             const admin_regi = document.getElementById("admin_regi");
