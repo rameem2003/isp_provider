@@ -29,6 +29,29 @@
         }
     }
 
+
+    // add new user
+    if(isset($_POST['internet_upload'])){
+        $user_name = $_POST['userName'];
+        $ip_address = $_POST['ip_add'];
+        $ip_password = $_POST['ip_pass'];
+        $speed = $_POST['speed'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $bill = $_POST['bill'];
+        $date = $_POST['date'];
+
+
+        $upload_user = "INSERT INTO `internet_user`(name, ip_add, ip_pass, speed, phone, address, bill, date) VALUES ('$user_name','$ip_address','$ip_password','$speed','$phone','$address','$bill','$date')";
+
+
+        if(mysqli_query($conn, $upload_user)){
+            echo '<script> alert("New User Added Successfully"); </script>';
+        }else{
+            echo '<script> alert("Somthing Wrong Admin !!!"); </script>';
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -133,21 +156,21 @@
 
         <input type="text" name="userName" id="name" placeholder="Enter user name: ">
 
-        <input type="number" name="ip_add" id="ip_add" placeholder="Ip address: ">
+        <input type="text" name="ip_add" id="ip_add" placeholder="Ip address: ">
 
-        <input type="number" name="ip_pass" id="ip_pass" placeholder="Ip password: ">
+        <input type="text" name="ip_pass" id="ip_pass" placeholder="Ip password: ">
 
         <input type="number" name="speed" id="speed" placeholder="Inter net speed: ">
 
-        <input type="text" name="phone" id="" placeholder="Phone number: ">
+        <input type="text" name="phone" id="phone" placeholder="Phone number: ">
 
-        <input type="text" name="address" id="" placeholder="Address: ">
+        <input type="text" name="address" id="address" placeholder="Address: ">
 
-        <input type="number" name="bill" id="" placeholder="Amout of bill: ">
+        <input type="number" name="bill" id="bill" placeholder="Amout of bill: ">
 
         <input type="date" name="date" id="">
 
-        <input type="submit" name="upload" value="Upload">
+        <input type="submit" name="internet_upload" value="Upload">
         <a class="logout" href="admin.php?logout=<?php echo $admin_id ?>">Logout</a>
     </form>
     <!-- user data upload end-->
