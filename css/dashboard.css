@@ -105,13 +105,13 @@ body{
 }
 
 #wrapper .right .internet .customers .search_box input,
-#wrapper .right .internet .customers .search_box button{
+#wrapper .right .internet .customers .search_box .search_btn{
     outline: none;
     padding: 10px;
     font-size: 20px;
 }
 
-#wrapper .right .internet .customers .search_box button{
+#wrapper .right .internet .customers .search_box .search_btn{
     cursor: pointer;
 }
 

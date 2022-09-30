@@ -52,6 +52,35 @@
         }
     }
 
+    // delete user data
+    if(isset($_GET['dl'])){
+        $delete_internet_user = $_GET['dl'];
+        $delete_query = "DELETE FROM `internet_user` WHERE phone='$delete_internet_user'";
+        mysqli_query($conn, $delete_query);
+        header("location:dashboard.php");
+    }
+
+    // search_function
+
+    if(isset($_POST['searchBtn'])){
+        $search_box = $_POST['search_user'];
+        $search_query = "SELECT * FROM `internet_user` WHERE phone = '$search_box'";
+
+        $run_search = mysqli_query($conn, $search_query);
+
+
+        if(mysqli_num_rows($run_search) > 0){
+            $search_user = mysqli_fetch_assoc($run_search);
+            $_SESSION['user_phone'] = $search_user['phone'];
+            header("location:view_internet_user.php");
+        }else{
+            echo "<script> alert('No user found'); </script>";
+        }
+
+    }
+
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -95,10 +124,10 @@
                 </div>
 
                 <div class="customers">
-                    <div class="search_box">
+                    <form class="search_box" method="POST">
                         <input type="text" name="search_user" id="" placeholder="Search">
-                        <button id="searchBtn" name="searchBtn">Search</button>
-                    </div>
+                        <input class="search_btn" name="searchBtn" type="submit" value="Search">
+                    </form>
                     <table style="width: 100%; margin: 20px 0; border-collapse: collapse; border: 1px solid black;">
                         <thead>
                             <tr>
@@ -116,19 +145,34 @@
 
                         <tbody>
 
-                            <tr>
-                                <td>Sl</td>
-                                <td>Rameem</td>
-                                <td>192.168.2.10</td>
-                                <td>12345</td>
-                                <td>20Mbps</td>
-                                <td>01409029641</td>
-                                <td>################</td>
-                                <td>500</td>
-                                <td>11/11/2022</td>
-                                <td><i class="fa-solid fa-trash"></i></td>
-                                <td><i class="fa-solid fa-pen-to-square"></i></td>
-                            </tr>
+                            <?php   
+                                
+                                $interner_user_list = "SELECT * FROM `internet_user`";
+
+                                $load_internet_user = mysqli_query($conn, $interner_user_list);
+
+                                if(mysqli_num_rows($load_internet_user) > 0){
+                                    while($internet_row = mysqli_fetch_assoc($load_internet_user)){
+                                        ?>
+                                            <tr>
+                                                <td><?php echo $internet_row['id'] ?></td>
+                                                <td><?php echo $internet_row['name'] ?></td>
+                                                <td><?php echo $internet_row['ip_add'] ?></td>
+                                                <td><?php echo $internet_row['ip_pass'] ?></td>
+                                                <td><?php echo $internet_row['speed'] ?></td>
+                                                <td><?php echo $internet_row['phone'] ?></td>
+                                                <td><?php echo $internet_row['address'] ?></td>
+                                                <td><?php echo $internet_row['bill'] ?></td>
+                                                <td><?php echo $internet_row['date'] ?></td>
+                                                <td><a href="dashboard.php?dl=<?php echo $internet_row['phone'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                                            </tr>
+                                        <?php 
+                                    }
+                                }else{
+                                    echo "NO DATA FOUND";
+                                }
+                                
+                            ?>
                         </tbody>
                     </table>
                 </div>
