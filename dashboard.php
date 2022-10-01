@@ -14,6 +14,14 @@
         $admin_row = mysqli_fetch_assoc($run_admin);
     }
 
+    // logout admin
+    if(isset($_GET['logout'])){
+        session_destroy();
+        unset($admin_id);
+        header("location:index.php");
+    }
+
+
 
     // admin registration
     if(isset($_POST['admin_reg'])){
@@ -103,6 +111,8 @@
                 <h1><?php echo $admin_row['admin_user'] ?></h1>
 
                 <button id="add_admin">Add Admin</button>
+                <a id="update_admin" href="./update_admin.php">Edit Admin</a>
+                <a id="admin_logout" href="dashboard.php?logout=<?php echo $admin_id ?>">Logout</a>
             </div>
 
             <div class="catagory">
