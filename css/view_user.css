@@ -30,3 +30,23 @@ body{
 #wrapper .user_info .info h2{
     margin: 20px 0;
 }
+
+#wrapper .btn{
+    text-align: center;
+}
+
+#wrapper .btn a{
+    display: inline-block;
+    width: 20%;
+    padding: 10px 20px;
+    background-color: yellow;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.5s linear;
+}
+#wrapper .btn a:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(10, 0, 0, 0.534);
+}
+

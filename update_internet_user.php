@@ -2,7 +2,42 @@
 
     include './connection/connection.php';
 
-    echo $_GET['name'];
+    session_start();
+
+    // load user data in edit form
+    $user_phone = $_SESSION['user_phone'];
+
+    $load_user_in_edit_query = "SELECT * FROM `internet_user` WHERE phone = '$user_phone'";
+
+    $run_user_query = mysqli_query($conn, $load_user_in_edit_query);
+
+    if(mysqli_num_rows($run_user_query) > 0){
+        $row = mysqli_fetch_assoc($run_user_query);
+    }
+
+    // update user data
+    if(isset($_POST['update_user'])){
+        $update_name = $_POST['new_name'];
+        $update_ip = $_POST['new_ip'];
+        $update_ip_pass = $_POST['new_ip_pass'];
+        $update_speed = $_POST['new_speed'];
+        $update_phone = $_POST['new_phone'];
+        $update_address = $_POST['new_address'];
+        $update_bill = $_POST['new_bill'];
+        $update_date = $_POST['new_date'];
+
+
+        $update_query = "UPDATE `internet_user` SET name = '$update_name', ip_add = '$update_ip', ip_pass = '$update_ip_pass', speed = '$update_speed', phone = '$update_phone', address = '$update_address', bill = '$update_bill', date = '$update_date' WHERE phone = '$user_phone'";
+
+        if(mysqli_query($conn, $update_query)){
+            echo '<script> alert("Update Successfull!"); </script>';
+            header("location:dashboard.php");
+        }else{
+            echo '<script> alert("Something went wrong Admin!"); </script>';
+        }
+
+    }
+
 
 ?>
 
@@ -12,41 +47,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User</title>
+    <title><?php echo $row['name'] ?> || Anika Cable Network</title>
 
     <link rel="stylesheet" href="./css/update_user.css">
 </head>
 <body>
     <form action="" method="post" enctype="multipart/form-data">
 
-        <h1>Upadate User Info</h1>
+        <h1>Upadate Info of <?php echo $row['name'] ?></h1>
 
 
         <label for="update_name">Name</label>
-        <input type="text" name="update_name" id="update_name">
+        <input type="text" name="new_name" id="update_name" value="<?php echo $row['name'] ?>">
 
         <label for="new_ip">IP Address: </label>
-        <input type="text" name="new_ip" id="new_ip">
+        <input type="text" name="new_ip" id="new_ip" value="<?php echo $row['ip_add'] ?>">
 
         <label for="new_ip_pass">IP Password: </label>
-        <input type="text" name="new_ip_pass" id="new_ip_pass">
+        <input type="text" name="new_ip_pass" id="new_ip_pass" value="<?php echo $row['ip_pass'] ?>">
 
         <label for="new_speed">Speed: </label>
-        <input type="text" name="new_speed" id="new_speed">
+        <input type="text" name="new_speed" id="new_speed" value="<?php echo $row['speed'] ?>">
 
         <label for="new_phone">Phone: </label>
-        <input type="text" name="new_phone" id="new_phone">
+        <input type="text" name="new_phone" id="new_phone" value="<?php echo $row['phone'] ?>">
 
         <label for="new_address">Address: </label>
-        <input type="text" name="new_address" id="new_address">
+        <input type="text" name="new_address" id="new_address" value="<?php echo $row['address'] ?>">
 
         <label for="new_bill">Bill: </label>
-        <input type="text" name="new_bill" id="new_bill">
+        <input type="text" name="new_bill" id="new_bill" value="<?php echo $row['bill'] ?>">
 
         <label for="new_date">Date: </label>
-        <input type="date" name="new_date" id="new_date">
+        <input type="date" name="new_date" id="new_date" value="<?php echo $row['date'] ?>">
 
-        <input type="submit" name="update" value="Update">
+        <input type="submit" name="update_user" value="Update">
     </form>
 </body>
 </html>

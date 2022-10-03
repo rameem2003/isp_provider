@@ -21,7 +21,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $row['name']; ?></title>
+    <title><?php echo $row['name']; ?> || Anika Cable Network</title>
 
     <link rel="stylesheet" href="./css/view_user.css">
 </head>
@@ -76,6 +76,10 @@
                     
                 </tbody>
             </table>
+        </section>
+
+        <section class="btn">
+            <a href="update_internet_user.php">Update User Info</a>
         </section>
     </div>
 </body>
