@@ -3,9 +3,9 @@
     include './connection/connection.php';
     session_start();
 
-    $user_phone = $_SESSION['user_phone'];
+    $user_ip = $_SESSION['user_ip'];
 
-    $load_user = "SELECT * FROM `internet_user` WHERE phone = '$user_phone'";
+    $load_user = "SELECT * FROM `internet_user` WHERE ip_add = '$user_ip'";
 
     $show_user = mysqli_query($conn, $load_user);
 
@@ -46,15 +46,15 @@
             <table style="width: 100%; margin: 20px 0; border-collapse: collapse; border: 1px solid black;">
                 <thead>
                     <tr>
-                        <td>Mounth Bill</td>
                         <td>Date</td>
+                        <td>Mounth Bill</td>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <?php
-                        $load_user = "SELECT * FROM `internet_user` WHERE phone = '$user_phone'";
+                        $load_user = "SELECT * FROM `internet_user` WHERE ip_add = '$user_ip'";
 
                         $show_user = mysqli_query($conn, $load_user);
 
@@ -62,8 +62,8 @@
                             while($row = mysqli_fetch_assoc($show_user)){
                                 ?>
                                     <tr>
-                                        <td><?php echo $row['bill']; ?></td>
                                         <td><?php echo $row['date']; ?></td>
+                                        <td><?php echo $row['bill']; ?></td>
                                     </tr>
                                 <?php
                             }

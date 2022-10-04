@@ -5,9 +5,9 @@
     session_start();
 
     // load user data in edit form
-    $user_phone = $_SESSION['user_phone'];
+    $user_ip = $_SESSION['user_ip'];
 
-    $load_user_in_edit_query = "SELECT * FROM `internet_user` WHERE phone = '$user_phone'";
+    $load_user_in_edit_query = "SELECT * FROM `internet_user` WHERE ip_add = '$user_ip'";
 
     $run_user_query = mysqli_query($conn, $load_user_in_edit_query);
 
@@ -27,7 +27,7 @@
         $update_date = $_POST['new_date'];
 
 
-        $update_query = "UPDATE `internet_user` SET name = '$update_name', ip_add = '$update_ip', ip_pass = '$update_ip_pass', speed = '$update_speed', phone = '$update_phone', address = '$update_address', bill = '$update_bill', date = '$update_date' WHERE phone = '$user_phone'";
+        $update_query = "UPDATE `internet_user` SET name = '$update_name', ip_add = '$update_ip', ip_pass = '$update_ip_pass', speed = '$update_speed', phone = '$update_phone', address = '$update_address', bill = '$update_bill', date = '$update_date' WHERE ip_add = '$user_ip'";
 
         if(mysqli_query($conn, $update_query)){
             echo '<script> alert("Update Successfull!"); </script>';

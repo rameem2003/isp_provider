@@ -63,7 +63,7 @@
     // delete user data
     if(isset($_GET['dl'])){
         $delete_internet_user = $_GET['dl'];
-        $delete_query = "DELETE FROM `internet_user` WHERE phone='$delete_internet_user'";
+        $delete_query = "DELETE FROM `internet_user` WHERE id='$delete_internet_user'";
         mysqli_query($conn, $delete_query);
         header("location:dashboard.php");
     }
@@ -72,14 +72,14 @@
 
     if(isset($_POST['searchBtn'])){
         $search_box = $_POST['search_user'];
-        $search_query = "SELECT * FROM `internet_user` WHERE phone = '$search_box'";
+        $search_query = "SELECT * FROM `internet_user` WHERE ip_add = '$search_box'";
 
         $run_search = mysqli_query($conn, $search_query);
 
 
         if(mysqli_num_rows($run_search) > 0){
             $search_user = mysqli_fetch_assoc($run_search);
-            $_SESSION['user_phone'] = $search_user['phone'];
+            $_SESSION['user_ip'] = $search_user['ip_add'];
             header("location:view_internet_user.php");
         }else{
             echo "<script> alert('No user found'); </script>";
@@ -174,7 +174,7 @@
                                                 <td><?php echo $internet_row['address'] ?></td>
                                                 <td><?php echo $internet_row['bill'] ?></td>
                                                 <td><?php echo $internet_row['date'] ?></td>
-                                                <td><a href="dashboard.php?dl=<?php echo $internet_row['phone'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                                                <td><a href="dashboard.php?dl=<?php echo $internet_row['id'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                                             </tr>
                                         <?php 
                                     }
