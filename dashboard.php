@@ -47,10 +47,14 @@
         $phone = $_POST['phone'];
         $address = $_POST['address'];
         $bill = $_POST['bill'];
+        $due_bill = $_POST['due_bill'];
+        $advance_bill = $_POST['advance_bill'];
+        $status = $_POST['status'];
         $date = $_POST['date'];
+        $signature = $_POST['signature'];
 
 
-        $upload_user = "INSERT INTO `internet_user`(name, ip_add, ip_pass, speed, phone, address, bill, date) VALUES ('$user_name','$ip_address','$ip_password','$speed','$phone','$address','$bill','$date')";
+        $upload_user = "INSERT INTO `internet_user`(name, ip_add, ip_pass, speed, phone, address, bill, due_bill, advance_bill, status, date, signature) VALUES ('$user_name','$ip_address','$ip_password','$speed','$phone','$address','$bill', '$due_bill', '$advance_bill', '$status', '$date', '$signature')";
 
 
         if(mysqli_query($conn, $upload_user)){
@@ -135,7 +139,7 @@
 
                 <div class="customers">
                     <form class="search_box" method="POST">
-                        <input type="text" name="search_user" id="" placeholder="Search">
+                        <input type="text" name="search_user" id="" placeholder="Search user by ip address.....">
                         <input class="search_btn" name="searchBtn" type="submit" value="Search">
                     </form>
                     <table style="width: 100%; margin: 20px 0; border-collapse: collapse; border: 1px solid black;">
@@ -149,7 +153,11 @@
                                 <td>Phone</td>
                                 <td>Address</td>
                                 <td>Mounth Bill</td>
+                                <td>Due Bill</td>
+                                <td>Advance Bill</td>
+                                <td>Status</td>
                                 <td>Date</td>
+                                <td>Signature</td>
                             </tr>
                         </thead>
 
@@ -173,7 +181,11 @@
                                                 <td><?php echo $internet_row['phone'] ?></td>
                                                 <td><?php echo $internet_row['address'] ?></td>
                                                 <td><?php echo $internet_row['bill'] ?></td>
+                                                <td><?php echo $internet_row['due_bill'] ?></td>
+                                                <td><?php echo $internet_row['advance_bill'] ?></td>
+                                                <td><?php echo $internet_row['status'] ?></td>
                                                 <td><?php echo $internet_row['date'] ?></td>
+                                                <td><?php echo $internet_row['signature'] ?></td>
                                                 <td><a href="dashboard.php?dl=<?php echo $internet_row['id'] ?>"><i class="fa-solid fa-trash"></i></a></td>
                                             </tr>
                                         <?php 
@@ -214,7 +226,7 @@
 
         <input type="text" name="ip_pass" id="ip_pass" placeholder="Ip password: ">
 
-        <input type="number" name="speed" id="speed" placeholder="Inter net speed: ">
+        <input type="number" name="speed" id="speed" placeholder="Internet speed: ">
 
         <input type="text" name="phone" id="phone" placeholder="Phone number: ">
 
@@ -222,7 +234,15 @@
 
         <input type="number" name="bill" id="bill" placeholder="Amout of bill: ">
 
+        <input type="number" name="due_bill" id="due_bill" placeholder="Deu bill: ">
+
+        <input type="number" name="advance_bill" id="due_bill" placeholder="Advance bill: ">
+
+        <input type="text" name="status" id="" placeholder="Pay Status">
+        
         <input type="date" name="date" id="">
+
+        <input type="text" name="signature" id="signature" placeholder="Signature: ">
 
         <input type="submit" name="internet_upload" value="Upload">
         <a class="logout" href="admin.php?logout=<?php echo $admin_id ?>">Logout</a>

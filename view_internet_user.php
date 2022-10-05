@@ -48,6 +48,9 @@
                     <tr>
                         <td>Date</td>
                         <td>Mounth Bill</td>
+                        <td>Due Bill</td>
+                        <td>Advance Bill</td>
+                        <td>Status</td>
                     </tr>
                 </thead>
 
@@ -64,6 +67,9 @@
                                     <tr>
                                         <td><?php echo $row['date']; ?></td>
                                         <td><?php echo $row['bill']; ?></td>
+                                        <td><?php echo $row['due_bill']; ?></td>
+                                        <td><?php echo $row['advance_bill']; ?></td>
+                                        <td><?php echo $row['status']; ?></td>
                                     </tr>
                                 <?php
                             }
