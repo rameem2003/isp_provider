@@ -38,6 +38,7 @@
                 <h2>Phone: <?php echo $row['phone']; ?></h2>
                 <h2>Ip Address: <?php echo $row['ip_add']; ?></h2>
                 <h2>Ip pass: <?php echo $row['ip_pass']; ?></h2>
+                <h2>Speed: <?php echo $row['speed']; ?> mbps</h2>
                 <h2>Addreess: <?php echo $row['address']; ?></h2>
             </div>
         </section>
