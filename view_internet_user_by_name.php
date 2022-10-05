@@ -1,16 +1,25 @@
 <?php 
 
+    // load user by name
+
     include './connection/connection.php';
     session_start();
 
-    $user_ip = $_SESSION['user_ip'];
+    $user_name = $_SESSION['user_name'];
 
-    $load_user = "SELECT * FROM `internet_user` WHERE ip_add = '$user_ip'";
+    $load_user = "SELECT * FROM `internet_user` WHERE name = '$user_name'";
 
     $show_user = mysqli_query($conn, $load_user);
 
     if(mysqli_num_rows($show_user)){
         $row = mysqli_fetch_assoc($show_user);
+    }
+
+
+    // logout 
+    if(isset($_GET['logout'])){
+        unset($user_name);
+        header("location:dashboard.php");
     }
 
 ?>
@@ -58,7 +67,7 @@
                 <tbody>
 
                     <?php
-                        $load_user = "SELECT * FROM `internet_user` WHERE ip_add = '$user_ip'";
+                        $load_user = "SELECT * FROM `internet_user` WHERE name = '$user_name'";
 
                         $show_user = mysqli_query($conn, $load_user);
 
@@ -87,6 +96,7 @@
 
         <section class="btn">
             <a href="update_internet_user.php">Update User Info</a>
+            <a href="view_internet_user_by_name.php?logout=<?php echo $user_name ?>">Logout</a>
         </section>
     </div>
 </body>

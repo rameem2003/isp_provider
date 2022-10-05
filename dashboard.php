@@ -75,20 +75,60 @@
     // search_function
 
     if(isset($_POST['searchBtn'])){
-        $search_box = $_POST['search_user'];
-        $search_query = "SELECT * FROM `internet_user` WHERE ip_add = '$search_box'";
 
-        $run_search = mysqli_query($conn, $search_query);
+        $search_op = $_POST['search_op'];
+        
+        if($search_op == "user_name"){
+            $search_box = $_POST['search_user'];
+            $search_query = "SELECT * FROM `internet_user` WHERE name = '$search_box'";
+
+            $run_search = mysqli_query($conn, $search_query);
 
 
-        if(mysqli_num_rows($run_search) > 0){
-            $search_user = mysqli_fetch_assoc($run_search);
-            $_SESSION['user_ip'] = $search_user['ip_add'];
-            header("location:view_internet_user.php");
-        }else{
-            echo "<script> alert('No user found'); </script>";
+            if(mysqli_num_rows($run_search) > 0){
+                $search_user = mysqli_fetch_assoc($run_search);
+                $_SESSION['user_name'] = $search_user['name'];
+                header("location:view_internet_user_by_name.php");
+            }else{
+                echo "<script> alert('No user found'); </script>";
+            }
+
         }
 
+        elseif($search_op == "user_ip"){
+            $search_box = $_POST['search_user'];
+            $search_query = "SELECT * FROM `internet_user` WHERE ip_add = '$search_box'";
+
+            $run_search = mysqli_query($conn, $search_query);
+
+
+            if(mysqli_num_rows($run_search) > 0){
+                $search_user = mysqli_fetch_assoc($run_search);
+                $_SESSION['user_ip'] = $search_user['ip_add'];
+                header("location:view_internet_user_by_ip.php");
+            }else{
+                echo "<script> alert('No user found'); </script>";
+            }
+        }
+
+
+        elseif($search_op == "user_phone"){
+            $search_box = $_POST['search_user'];
+            $search_query = "SELECT * FROM `internet_user` WHERE phone = '$search_box'";
+
+            $run_search = mysqli_query($conn, $search_query);
+
+
+            if(mysqli_num_rows($run_search) > 0){
+                $search_user = mysqli_fetch_assoc($run_search);
+                $_SESSION['user_phone'] = $search_user['phone'];
+                header("location:view_internet_user_by_phone.php");
+            }else{
+                echo "<script> alert('No user found'); </script>";
+            }
+        }
+
+        
     }
 
     
@@ -123,8 +163,8 @@
                 <h3>Catagory's</h3>
 
                 <div class="options">
-                    <button>Internet</button>
-                    <button>Cable TV</button>
+                    <!-- <button>Internet</button>
+                    <button>Cable TV</button> -->
                 </div>
             </div>
         </div>
@@ -135,10 +175,16 @@
                     <h1>Anika Cable Network</h1>
                     <h2>Internet Details</h2>
                     <button id="add_internet_user">Add User</button>
+                    <button id="show_monthly_record">Show Monthly Record</button>
                 </div>
 
                 <div class="customers">
                     <form class="search_box" method="POST">
+                        <select name="search_op" id="select">
+                            <option value="user_name">User Name</option>
+                            <option value="user_ip">IP Address</option>
+                            <option value="user_phone">Phone Number</option>
+                        </select>
                         <input type="text" name="search_user" id="" placeholder="Search user by ip address.....">
                         <input class="search_btn" name="searchBtn" type="submit" value="Search">
                     </form>
