@@ -58,7 +58,7 @@
 
 
         if(mysqli_query($conn, $upload_user)){
-            echo '<script> alert("New User Added Successfully"); </script>';
+            echo '<script> alert("New Bill Entry Successfull"); </script>';
         }else{
             echo '<script> alert("Somthing Wrong Admin !!!"); </script>';
         }
@@ -174,8 +174,8 @@
                 <div class="title">
                     <h1>Anika Cable Network</h1>
                     <h2>Internet Details</h2>
-                    <button id="add_internet_user">Add User</button>
-                    <button id="show_monthly_record">Show Monthly Record</button>
+                    <button id="add_internet_user">Bill entry</button>
+                    <a href="./show_monthly_record.php" target="_blank" id="show_monthly_record">Show Monthly Record</a>
                 </div>
 
                 <div class="customers">
@@ -223,12 +223,12 @@
                                                 <td><?php echo $internet_row['name'] ?></td>
                                                 <td><?php echo $internet_row['ip_add'] ?></td>
                                                 <td><?php echo $internet_row['ip_pass'] ?></td>
-                                                <td><?php echo $internet_row['speed'] ?></td>
+                                                <td><?php echo $internet_row['speed'] ?> Mbps</td>
                                                 <td><?php echo $internet_row['phone'] ?></td>
                                                 <td><?php echo $internet_row['address'] ?></td>
-                                                <td><?php echo $internet_row['bill'] ?></td>
-                                                <td><?php echo $internet_row['due_bill'] ?></td>
-                                                <td><?php echo $internet_row['advance_bill'] ?></td>
+                                                <td><?php echo $internet_row['bill'] ?> ৳</td>
+                                                <td><?php echo $internet_row['due_bill'] ?> ৳</td>
+                                                <td><?php echo $internet_row['advance_bill'] ?> ৳</td>
                                                 <td><?php echo $internet_row['status'] ?></td>
                                                 <td><?php echo $internet_row['date'] ?></td>
                                                 <td><?php echo $internet_row['signature'] ?></td>

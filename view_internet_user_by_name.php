@@ -95,7 +95,7 @@
         </section>
 
         <section class="btn">
-            <a href="update_internet_user.php">Update User Info</a>
+            <a href="update/update_internet_user_by_name.php?update=<?php echo $user_name ?>">Update User Info</a>
             <a href="view_internet_user_by_name.php?logout=<?php echo $user_name ?>">Logout</a>
         </section>
     </div>
