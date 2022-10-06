@@ -174,6 +174,8 @@
                 <div class="title">
                     <h1>Anika Cable Network</h1>
                     <h2>Internet Details</h2>
+
+                    <span id="clock">08 : 05 : 00 pm || 06 অক্টোবর ২০২২ || শুক্রবার</span>
                     <button id="add_internet_user">Bill entry</button>
                     <a href="./show_monthly_record.php" target="_blank" id="show_monthly_record">Show Monthly Record</a>
                 </div>
@@ -188,61 +190,64 @@
                         <input type="text" name="search_user" id="" placeholder="Search user by ip address.....">
                         <input class="search_btn" name="searchBtn" type="submit" value="Search">
                     </form>
-                    <table style="width: 100%; margin: 20px 0; border-collapse: collapse; border: 1px solid black;">
-                        <thead>
-                            <tr>
-                                <td>Sl</td>
-                                <td>Name</td>
-                                <td>Ip</td>
-                                <td>Ip Pass</td>
-                                <td>Speed</td>
-                                <td>Phone</td>
-                                <td>Address</td>
-                                <td>Mounth Bill</td>
-                                <td>Due Bill</td>
-                                <td>Advance Bill</td>
-                                <td>Status</td>
-                                <td>Date</td>
-                                <td>Signature</td>
-                            </tr>
-                        </thead>
 
-                        <tbody>
+                    <div class="table">
+                        <table style="width: 100%; margin: 20px 0; border-collapse: collapse; border: 1px solid black;">
+                            <thead>
+                                <tr>
+                                    <td>Sl</td>
+                                    <td>Name</td>
+                                    <td>Ip</td>
+                                    <td>Ip Pass</td>
+                                    <td>Speed</td>
+                                    <td>Phone</td>
+                                    <td>Address</td>
+                                    <td>Mounth Bill</td>
+                                    <td>Due Bill</td>
+                                    <td>Advance Bill</td>
+                                    <td>Status</td>
+                                    <td>Date</td>
+                                    <td>Signature</td>
+                                </tr>
+                            </thead>
 
-                            <?php   
-                                
-                                $interner_user_list = "SELECT * FROM `internet_user`";
+                            <tbody>
 
-                                $load_internet_user = mysqli_query($conn, $interner_user_list);
+                                <?php   
+                                    
+                                    $interner_user_list = "SELECT * FROM `internet_user`";
 
-                                if(mysqli_num_rows($load_internet_user) > 0){
-                                    while($internet_row = mysqli_fetch_assoc($load_internet_user)){
-                                        ?>
-                                            <tr>
-                                                <td><?php echo $internet_row['id'] ?></td>
-                                                <td><?php echo $internet_row['name'] ?></td>
-                                                <td><?php echo $internet_row['ip_add'] ?></td>
-                                                <td><?php echo $internet_row['ip_pass'] ?></td>
-                                                <td><?php echo $internet_row['speed'] ?> Mbps</td>
-                                                <td><?php echo $internet_row['phone'] ?></td>
-                                                <td><?php echo $internet_row['address'] ?></td>
-                                                <td><?php echo $internet_row['bill'] ?> ৳</td>
-                                                <td><?php echo $internet_row['due_bill'] ?> ৳</td>
-                                                <td><?php echo $internet_row['advance_bill'] ?> ৳</td>
-                                                <td><?php echo $internet_row['status'] ?></td>
-                                                <td><?php echo $internet_row['date'] ?></td>
-                                                <td><?php echo $internet_row['signature'] ?></td>
-                                                <td><a href="dashboard.php?dl=<?php echo $internet_row['id'] ?>"><i class="fa-solid fa-trash"></i></a></td>
-                                            </tr>
-                                        <?php 
+                                    $load_internet_user = mysqli_query($conn, $interner_user_list);
+
+                                    if(mysqli_num_rows($load_internet_user) > 0){
+                                        while($internet_row = mysqli_fetch_assoc($load_internet_user)){
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $internet_row['id'] ?></td>
+                                                    <td><?php echo $internet_row['name'] ?></td>
+                                                    <td><?php echo $internet_row['ip_add'] ?></td>
+                                                    <td><?php echo $internet_row['ip_pass'] ?></td>
+                                                    <td><?php echo $internet_row['speed'] ?> Mbps</td>
+                                                    <td><?php echo $internet_row['phone'] ?></td>
+                                                    <td><?php echo $internet_row['address'] ?></td>
+                                                    <td><?php echo $internet_row['bill'] ?> ৳</td>
+                                                    <td><?php echo $internet_row['due_bill'] ?> ৳</td>
+                                                    <td><?php echo $internet_row['advance_bill'] ?> ৳</td>
+                                                    <td><?php echo $internet_row['status'] ?></td>
+                                                    <td><?php echo $internet_row['date'] ?></td>
+                                                    <td><?php echo $internet_row['signature'] ?></td>
+                                                    <td><a href="dashboard.php?dl=<?php echo $internet_row['id'] ?>"><i class="fa-solid fa-trash"></i></a></td>
+                                                </tr>
+                                            <?php 
+                                        }
+                                    }else{
+                                        echo "NO DATA FOUND";
                                     }
-                                }else{
-                                    echo "NO DATA FOUND";
-                                }
-                                
-                            ?>
-                        </tbody>
-                    </table>
+                                    
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -335,6 +340,55 @@
             userForm.classList.remove("expand");
             wrapper.classList.remove("blur");
         })
+
+
+        // clock function
+        const clock = () => {
+            const d = new Date();
+
+            h = d.getHours();
+            m = d.getMinutes();
+            s = d.getSeconds();
+
+            day = d.getDay();
+            date = d.getDate();
+            month = d.getMonth();
+            year = d.getFullYear();
+            var ampm = "pm"
+
+            const arrayOfMounth = ["জানুয়ারী", "ফেব্রুয়ারী", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+
+            const arrayOfDay = ["রবিবার", "সোমবার", "মঙ্গলবার", "বুধবার", "বৃহস্পতিবার", "শুক্রবার", "শনিবার"];
+
+            if(h >= 12){
+                ampm = "pm";
+            }else{
+                ampm = "am";
+            }
+
+            if(h > 12){
+                h = h - 12;
+            }
+
+            if(h < 10){
+                h = `0${h}`;
+            }
+
+            if(m < 10){
+                m = `0${m}`;
+            }
+
+            if(s < 10){
+                s = `0${s}`;
+            }
+
+
+            document.getElementById("clock").innerHTML = `${h} : ${m} : ${s} ${ampm} || ${date} ${arrayOfMounth[month]} ${year} || ${arrayOfDay[day]}`;
+
+            setInterval(clock, 1000);
+        }
+
+        clock();
     </script>
 </body>
 </html>
