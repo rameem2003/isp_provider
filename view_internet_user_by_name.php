@@ -33,6 +33,7 @@
     <title><?php echo $row['name']; ?> || Anika Cable Network</title>
 
     <link rel="stylesheet" href="./css/view_user.css">
+    <link rel="shortcut icon" href="./icon/browser.png" type="image/x-icon">
 </head>
 <body>
     <div id="wrapper">

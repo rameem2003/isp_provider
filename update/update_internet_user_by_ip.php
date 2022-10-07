@@ -48,6 +48,7 @@
     <title><?php echo $row['name'] ?> || Anika Cable Network</title>
 
     <link rel="stylesheet" href="../css/update_user.css">
+    <link rel="shortcut icon" href="../icon/browser.png" type="image/x-icon">
 </head>
 <body>
     <form action="" method="post" enctype="multipart/form-data">

@@ -29,6 +29,7 @@
     <title>Admin</title>
 
     <link rel="stylesheet" href="./css/login.css">
+    <link rel="shortcut icon" href="./icon/browser.png" type="image/x-icon">
 </head>
 <body>
     <form action="" method="post">

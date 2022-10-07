@@ -7,6 +7,7 @@
     <title>Show Monthly Record</title>
 
     <link rel="stylesheet" href="./css/show_record.css">
+    <link rel="shortcut icon" href="./icon/browser.png" type="image/x-icon">
 </head>
 <body>
     <div id="wrapper">
